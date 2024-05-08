@@ -17,17 +17,21 @@
       <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
         but understanding how developers think is invaluable. </p>
     </section>
-    <section class="sign-up-area">
+    <form id="sign-up-form" class="sign-up-area">
       <button class="seven-day-trial-button"><b>Try it free 7 days</b> then $20/mo. thereafter</button>
       <section class="form-area">
-        <input placeholder="First Name"/>
-        <input placeholder="Last Name"/>
-        <input placeholder="Email Address"/>
-        <input placeholder="Password"/>
-        <button class="claim-trial-button">Claim your free trial</button>
+        <input id="form-first-name"  type="text" placeholder="First Name" minlength="2"/>
+        <p id="error-first-name" class="error-message">First Name cannot be empty</p>
+        <input id="form-last-name"  type="text" placeholder="Last Name" minlength="1"/>
+        <p id="error-last-name" class="error-message">Last Name cannot be empty</p>
+        <input id="form-email"  type="text" placeholder="Email Address" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"/>
+        <p id="error-email" class="error-message">Looks like this is not an email</p>
+        <input id="form-password"  type="text" placeholder="Password" minlength="8"/>
+        <p id="error-password" class="error-message">Password cannot be empty</p>
+        <button type="submit" class="claim-trial-button">Claim your free trial</button>
         <p class="disclaimer">By clicking the button, you are agreeing to our <b>Terms and Services</b></p>
       </section>
-    </section>
+    </form>
   </section>
   
   <footer>
@@ -36,5 +40,72 @@
       Coded by <a href="https://github.com/ianwilk20">Ian Wilkinson</a>.
     </p>
   </footer>
+
 </body>
+
+
+<script>
+
+  let signUpForm = document.getElementById('sign-up-form')
+
+  signUpForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let firstName = document.getElementById('form-first-name')
+    let lastName = document.getElementById('form-last-name')
+    let email = document.getElementById('form-email')
+    let password = document.getElementById('form-password')
+
+    let errorFirstName = document.getElementById('error-first-name')
+    let errorLastName = document.getElementById('error-last-name')
+    let errorEmail = document.getElementById('error-email')
+    let errorPassword = document.getElementById('error-password')
+
+    // Check for empty fields
+    console.log(firstName.value.trim())
+    if(firstName.value.trim() == "") {
+      firstName.classList.add('invalid')
+      errorFirstName.classList.add('show')
+    } else {
+      firstName.classList.remove('invalid')
+      errorFirstName.classList.remove('show')
+    }
+
+    if(lastName.value.trim() == "") {
+      lastName.classList.add('invalid')
+      errorLastName.classList.add('show')
+    } else {
+      lastName.classList.remove('invalid')
+      errorLastName.classList.remove('show')
+    }
+
+    if(email.value.trim() == "") {
+      email.classList.add('invalid')
+      errorEmail.classList.add('show')
+    } else {
+      email.classList.remove('invalid')
+      errorEmail.classList.remove('show')
+    }
+
+    if(password.value.trim() == "") {
+      password.classList.add('invalid')
+      errorPassword.classList.add('show')
+    } else {
+      password.classList.remove('invalid')
+      errorPassword.classList.remove('show')
+    }
+
+    // firstName.reportValidity();
+    // for (let element of [firstName, lastName, email, password]) {
+    //   if(element.value == ""){
+    //     element.setCustomValidity(element.placeholder + " cannot be empty");
+    //   } else {
+    //     element.setCustomValidity("")
+    //   }
+    // }
+    // element.reportValidity();
+
+  })
+    
+</script>
 </html>

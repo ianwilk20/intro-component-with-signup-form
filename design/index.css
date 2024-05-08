@@ -1,11 +1,11 @@
 @font-face {
-    font-family: "Poppins Light";
-    src: url('../assets/fonts/Poppins-Light.ttf') format("truetype");
+    font-family: "Poppins Regular";
+    src: url('../assets/fonts/Poppins-Regular.ttf') format("truetype");
 }
 
 @font-face {
-    font-family: "Poppins Regular";
-    src: url('../assets/fonts/Poppins-Regular.ttf') format("truetype");
+    font-family: "Poppins Italic";
+    src: url('../assets/fonts/Poppins-Italic.ttf') format("truetype");
 }
 
 @font-face {
@@ -44,6 +44,7 @@ h1 {
     color: white;
     font-size: 1.1rem;
     margin-bottom: 3.5rem;
+    max-width: 600px;
 }
 
 .lead-text > p {
@@ -52,11 +53,11 @@ h1 {
 }
 
 .seven-day-trial-button {
-    background-color: hsl(249deg 10.81% 33.53%);
+    background-color: hsl(248, 32%, 49%);
     color: white;
     min-width: 100%;
     height: auto;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     box-shadow: #0000004a 0px 6px 0px 0px;
     border: none;
     padding: 15px 70px;
@@ -70,17 +71,30 @@ h1 {
     font-family: "Poppins Bold";
 } */
 
+.sign-up-area {
+    max-width: 600px;
+}
+
 .form-area {
     padding: 20px;
     background-color: white;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     box-shadow: #0000004a 0px 6px 0px 0px;
 }
 
-.form-area > input {
+.invalid {
+    margin-bottom: 0;
+    border: hsl(0, 100%, 74%) 1px solid;
+    background-image: url("../assets/images/icon-error.svg");
+    background-repeat: no-repeat;
+    background-position: 96% 50%;
+}
+
+
+input {
     min-width: 100%;
     color: hsl(249, 10%, 26%);
-    border: hsl(0deg 0% 75.74%) 1px solid;
+    border: hsl(246, 25%, 77%) 1px solid;
     border-radius: 0.4rem;
     height: 4rem;
     margin-bottom: 1rem;
@@ -88,8 +102,29 @@ h1 {
     font-weight: 500;
 }
 
-.form-area > input::placeholder {
+input::placeholder {
     font-family: "Poppins Semibold";
+}
+
+/* input:invalid {
+    margin-bottom: 0;
+    border: hsl(0, 100%, 74%) 1px solid;
+} */
+
+
+.error-message {
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+    color: hsl(0, 100%, 74%);
+    display: flex;
+    justify-content: flex-end;
+    font-size: .85rem;
+    margin-top: 0.4rem;
+    font-family: "Poppins Italic";
+    margin-bottom: 1rem;
 }
 
 .claim-trial-button {
