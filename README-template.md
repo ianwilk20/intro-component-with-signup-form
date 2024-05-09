@@ -14,9 +14,6 @@ This is a solution to the [Intro component with sign up form challenge on Fronte
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -32,20 +29,18 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+Desktop:
+![Desktop initial state](./desktop-init.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+![Desktop form error state](./desktop-active.png)
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
+Mobile: 
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Mobile initial state](./mobile-init.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Live Site URL](https://signup-form-ianwilk20.netlify.app/design/index.html)
 
 ## My process
 
@@ -54,61 +49,68 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+- I learned that a mobile-first workflow is effective at speeding up the process of making a website responsive. I am contrasting this challenge with my prior Frontend Mentor challenge, which took about 2-3 times as long because of difficulties I had making the desktop layout responsive then making the mobile one responsive too.
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+- Form validation was cumbersome and, although I did not implement the best form validation, I learned some easy ways to validate minimal forms like this. A simple way to do form validation on click of a button is to hook up an event listener to a form:
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+signUpForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // Handle form validation in here
+}
+```
+Then for each field in the form, again ideally forms with only very few fields, you should get the input by id and check if it's valid based on your validation requirements. If it's not valid show style the inputs so they appear to be invalid and show an error message:
+```js
+let firstName = document.getElementById('form-first-name')
+let errorFirstName = document.getElementById('error-first-name')
+if(firstName.value.trim() == "") { //If input is blank
+  firstName.classList.add('invalid') //Add the invalid class to color the text, input border, and error icon
+  errorFirstName.classList.add('show') //Show hidden error text for that input 
+} else {
+  firstName.classList.remove('invalid') //Remove the invalid class to color the text and input border
+  errorFirstName.classList.remove('show') //Show hidden error text for that input 
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+```css
+.invalid {
+    margin-bottom: 0;
+    border: hsl(0, 100%, 74%) 1px solid;
+    color: hsl(0, 100%, 74%);
+    background-image: url("../assets/images/icon-error.svg");
+    background-repeat: no-repeat;
+    background-position: 96% 50%;
+}
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+.show {
+    display: block;
+    color: hsl(0, 100%, 74%);
+    display: flex;
+    justify-content: flex-end;
+    font-size: .85rem;
+    margin-top: 0.4rem;
+    font-family: "Poppins Italic";
+    margin-bottom: 1rem;
+}
+```
+
+It should be noted that, in my experience, ideally forms are validated as users type in the fields, but that was not what was asked for in this beginner challenge.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I look forward to exploring the different form validation options since this approach was quite cumbersome. I have heard good things about React Hook Form and Zod.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
-
+- [Client-side form validation - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) - This helped me when setting up the form validation for this challenge by explaining form validation concepts and the built-in contrain validation API.
+- [Testing text for regex matches](https://stackoverflow.com/a/8663843) - I was having trouble using the match() function when testing the email's validity. It kept on returning null whether I provided a valid or invalid email. The linked answer provided a different approach using the built-in RegExp module.
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- GitHub - [ianwilk20](https://github.com/ianwilk20)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
-## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
